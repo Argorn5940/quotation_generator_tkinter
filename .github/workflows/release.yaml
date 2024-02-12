@@ -1,0 +1,37 @@
+name: guotation
+on:
+  - pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # リポジトリをチェックアウト
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Pythonの環境をセットアップ
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+
+      # pytestをインストール
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # pythonバージョンの表示
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+      # unittestの実行
+      - name: Test
+        run: disp=:99
+          screen=0
+          geom=640x480x24
+          exec Xvfb $disp -screen $screen $geom 2>/tmp/Xvfb.log &
+          export DISPLAY=:99
+          python -m unittest discover tests

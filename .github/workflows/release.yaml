@@ -29,9 +29,10 @@ jobs:
         run: python -c "import sys; print(sys.version)"
       # unittestの実行
       - name: Test
-        run: disp=:99
+        run: |
+          disp=:99
           screen=0
           geom=640x480x24
-          exec Xvfb $disp -screen $screen $geom 2>/tmp/Xvfb.log &
+          exec Xvfb $disp -screen $screen $geom  2>/tmp/Xvfb.log &
           export DISPLAY=:99
           python -m unittest discover tests

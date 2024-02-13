@@ -1,4 +1,4 @@
 ###### Requirements without Version Specifiers ######
-tkinter
+tkinter == 8.6
 docxtpl
 
